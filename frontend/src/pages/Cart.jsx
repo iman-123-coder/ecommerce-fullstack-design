@@ -32,7 +32,7 @@ const Cart = () => {
   const fetchCart = async () => {
     try {
       setLoading(true)
-      const res = await axios.get('http://localhost:5000/api/cart', {
+      const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/cart`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       setCart(res.data)
@@ -58,7 +58,7 @@ const Cart = () => {
       return
     }
     try {
-      await axios.patch(`http://localhost:5000/api/cart/${cartItemId}`,
+      await axios.patch(`${import.meta.env.VITE_API_URL}/api/cart/${cartItemId}`,
         { quantity: newQty },
         { headers: { Authorization: `Bearer ${token}` } }
       )
@@ -81,7 +81,8 @@ const Cart = () => {
       return
     }
     try {
-      await axios.delete(`http://localhost:5000/api/cart/${cartItemId}`, {
+      await axios.delete(`${import.meta.env.VITE_API_URL}/api/cart/${cartItemId}`,
+ {
         headers: { Authorization: `Bearer ${token}` }
       })
       setCart(prev => prev.filter(i => i.id !== cartItemId))
@@ -97,7 +98,7 @@ const Cart = () => {
       return
     }
     try {
-      await axios.delete('http://localhost:5000/api/cart', {
+      await axios.delete(`${import.meta.env.VITE_API_URL}/api/cart`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       setCart([])

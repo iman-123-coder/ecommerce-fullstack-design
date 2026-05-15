@@ -11,7 +11,8 @@ const Home = () => {
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false)
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/products')
+    axios.get(`${import.meta.env.VITE_API_URL}/api/products`)
+
       .then(res => { setProducts(res.data); setLoading(false) })
       .catch(() => setLoading(false))
   }, [])

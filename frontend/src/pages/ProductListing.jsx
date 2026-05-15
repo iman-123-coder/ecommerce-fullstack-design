@@ -51,7 +51,7 @@ const ProductListing = () => {
   const fetchProducts = async () => {
     try {
       setLoading(true)
-      let url = 'http://localhost:5000/api/products?'
+      let url = `${import.meta.env.VITE_API_URL}/api/products?`
       if (search) url += `search=${search}&`
       if (category && category !== 'All') url += `category=${encodeURIComponent(category)}`
       const res = await axios.get(url)
